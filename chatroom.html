@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chatroom</title>
+  <style>
+    /* Styles généraux */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #FF8800;
+      color: #fff;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+    }
+
+    h1 {
+      margin: 0;
+      display: flex;
+      align-items: center;
+    }
+
+    #chatroom-icon {
+      width: 30px;
+      height: 30px;
+      margin-right: 10px;
+    }
+
+    main {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px;
+    }
+
+    section {
+      width: 45%;
+      padding: 20px;
+      background-color: #f1f1f1;
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 10px;
+    }
+
+    a {
+      color: #333;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* Styles spécifiques à la chatroom */
+    #chatroom {
+      display: flex;
+      flex-direction: column;
+    }
+
+    #messages {
+      flex-grow: 1;
+      overflow-y: auto;
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    .message {
+      margin-bottom: 10px;
+    }
+
+    .user {
+      font-weight: bold;
+    }
+
+    #message-form {
+      display: flex;
+      margin-top: 10px;
+    }
+
+    #message-input {
+      flex-grow: 1;
+      margin-right: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>
+      <svg id="chatroom-icon" width="30" height="30" viewBox="0 0 126 173" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g filter="url(#filter0_ddd_6_3126)">
+          <rect x="31" y="0.820007" width="64" height="64" rx="32" fill="#FF8800"/>
+          <path d="M75.5806 20.2627C74.9136 19.5782 73.9266 19.3231 73.0062 19.5916L51.544 25.8327C50.573 26.1025 49.8847 26.8769 49.6993 27.8608C49.5098 28.862 50.1715 30.1331 51.0358 30.6646L57.7466 34.7891C58.4348 35.2119 59.3232 35.1059 59.8928 34.5314L67.5772 26.7991C67.964 26.3964 68.6043 26.3964 68.9912 26.7991C69.378 27.1883 69.378 27.8192 68.9912 28.2218L61.2934 35.9555C60.7224 36.5286 60.6158 37.4211 61.0359 38.1136L65.1363 44.8918C65.6164 45.697 66.4435 46.1534 67.3504 46.1534C67.4572 46.1534 67.5772 46.1534 67.684 46.1399C68.7244 46.0058 69.5514 45.2944 69.8582 44.2878L76.2208 22.8531C76.501 21.9404 76.2475 20.9472 75.5806 20.2627Z" fill="white"/>
+        </g>
+        <defs>
+          <filter id="filter0_ddd_6_3126" x="0" y="0.820007" width="126" height="172" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+            <feOffset dy="19"/>
+            <feGaussianBlur stdDeviation="9.5"/>
+            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.09 0"/>
+            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_6_3126"/>
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+            <feOffset dy="43"/>
+            <feGaussianBlur stdDeviation="13"/>
+            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.05 0"/>
+            <feBlend mode="normal" in2="effect1_dropShadow_6_3126" result="effect2_dropShadow_6_3126"/>
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+            <feOffset dy="77"/>
+            <feGaussianBlur stdDeviation="15.5"/>
+            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.01 0"/>
+            <feBlend mode="normal" in2="effect2_dropShadow_6_3126" result="effect3_dropShadow_6_3126"/>
+            <feBlend mode="normal" in="SourceGraphic" in2="effect3_dropShadow_6_3126" result="shape"/>
+          </filter>
+        </defs>
+      </svg>
+      Chatroom
+    </h1>
+  </header>
+
+  <main>
+    <section>
+      <h2>
+        Chatrooms
+      
+      </h2>
+      <ul id="chatroom-list">
+        <!-- Liste des chatrooms -->
+      </ul>
+    </section>
+
+    <section>
+      <h2>Chatroom</h2>
+      <div id="chatroom">
+        <div id="messages">
+          <!-- Messages de la chatroom -->
+        </div>
+        <form id="message-form">
+          <input type="text" id="message-input" placeholder="Entrez votre message">
+          <button type="submit">Envoyer</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://cdn.socket.io/socket.io-3.1.1.min.js"></script>
+  <script>
+    // Connexion à la socket.io
+    const socket = io();
+
+    // Écouteur pour la réception des messages
+    socket.on('chat message', (message) => {
+      const messagesContainer = document.getElementById('messages');
+      const messageElement = document.createElement('div');
+      messageElement.classList.add('message');
+      messageElement.innerHTML = `<span class="user">${message.user}: </span>${message.text}`;
+      messagesContainer.appendChild(messageElement);
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    });
+
+    // Événement de soumission du formulaire de message
+    const messageForm = document.getElementById('message-form');
+    messageForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const messageInput = document.getElementById('message-input');
+      const message = messageInput.value.trim();
+      if (message !== '') {
+        socket.emit('chat message', message);
+        messageInput.value = '';
+      }
+    });
+  </script>
+</body>
+
+</html>
